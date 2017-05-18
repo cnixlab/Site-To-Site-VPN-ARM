@@ -41,7 +41,7 @@
     {
       "apiVersion": "[variables('api-version')]",
       "type": "Microsoft.Network/virtualNetworks",
-      "name": "[parameters('virtualNetworkName')]",
+      "name": "[variables('AzureVNetName')]",
       "location": "[resourceGroup().location]",
       "properties": {
         "addressSpace": {
@@ -190,7 +190,8 @@
     "LocalGatewayName": "[concat(parameters('CompanyNameAcronym'), '-LNG', '-VPN')]",
     "AzureGatewayName": "[concat(parameters('CompanyNameAcronym'), '-VNG', '-VPN')]",
     "AzureGatewayPipName": "[concat(parameters('CompanyNameAcronym'),'-VNG','-PIP')]",
-    "VPNConnectionName": "[concat(parameters('CompanyNameAcronym'), 'VPN','CONNECTION')]",
+    "VPNConnectionName": "[concat(parameters('CompanyNameAcronym'), '-VPN','-CONNECTION')]",
+    "AzureVNetName": "[concat(parameters('CompanyNameAcronym'), '-CORE','-VNET')]",
 
     "vnetID": "[resourceId('Microsoft.Network/virtualNetworks', parameters('virtualNetworkName'))]",
     "gatewaySubnetRef": "[concat(variables('vnetID'),'/subnets/','GatewaySubnet')]",
