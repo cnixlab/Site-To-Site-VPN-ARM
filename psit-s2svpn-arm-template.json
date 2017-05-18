@@ -80,7 +80,7 @@
       "name": "[variables('AzureGatewayName')]",
       "location": "[resourceGroup().location]",
       "dependsOn": [
-        "[concat('Microsoft.Network/publicIPAddresses/', parameters('gatewayPublicIPName'))]",
+        "[concat('Microsoft.Network/publicIPAddresses/', variables('AzureGatewayPipName'))]",
         "[concat('Microsoft.Network/virtualNetworks/', parameters('virtualNetworkName'))]"
       ],
       "properties": {
@@ -92,7 +92,7 @@
                 "id": "[variables('gatewaySubnetRef')]"
               },
               "publicIPAddress": {
-                "id": "[resourceId('Microsoft.Network/publicIPAddresses',parameters('gatewayPublicIPName'))]"
+                "id": "[resourceId('Microsoft.Network/publicIPAddresses',variables('AzureGatewayPipName'))]"
               }
             },
             "name": "vnetGatewayConfig"
@@ -160,14 +160,6 @@
       "type": "string",
       "metadata": {
         "description": "CIDR block representing the address space of your local/on-prem network's Subnet"
-      }
-    },
-
-    "gatewayPublicIPName": {
-      "type": "string",
-      "defaultValue": "azureGatewayIP",
-      "metadata": {
-        "description": "Arbitrary name for public IP resource used for the new azure gateway"
       }
     },
 
