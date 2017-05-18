@@ -81,7 +81,7 @@
       "location": "[resourceGroup().location]",
       "dependsOn": [
         "[concat('Microsoft.Network/publicIPAddresses/', variables('AzureGatewayPipName'))]",
-        "[concat('Microsoft.Network/virtualNetworks/', parameters('virtualNetworkName'))]"
+        "[concat('Microsoft.Network/virtualNetworks/', variables('AzureVNetName'))]"
       ],
       "properties": {
         "ipConfigurations": [
@@ -127,7 +127,6 @@
     },
     "AzureVNetAddressPrefix": {
       "type": "string",
-      "defaultValue": "10.3.0.0/16",
       "metadata": {
         "description": "CIDR block representing the address space of the Azure VNet"
       }
@@ -163,22 +162,7 @@
       }
     },
 
-    "virtualNetworkName": {
-      "type": "string",
-      "defaultValue": "azureVnet",
-      "metadata": {
-        "description": "Arbitrary name for the Azure Virtual Network"
-      }
-    },
-
-    "connectionName": {
-      "type": "string",
-      "defaultValue": "Azure2Other",
-      "metadata": {
-        "description": "Arbitrary name for the new connection between Azure VNet and other network"
-      }
-    },
-    "sharedKey": {
+    "SharedKey": {
       "type": "string",
       "metadata": {
         "description": "Shared key (PSK) for IPSec tunnel"
@@ -193,7 +177,7 @@
     "VPNConnectionName": "[concat(parameters('CompanyNameAcronym'), '-VPN','-CONNECTION')]",
     "AzureVNetName": "[concat(parameters('CompanyNameAcronym'), '-CORE','-VNET')]",
 
-    "vnetID": "[resourceId('Microsoft.Network/virtualNetworks', parameters('virtualNetworkName'))]",
+    "vnetID": "[resourceId('Microsoft.Network/virtualNetworks', variables('AzureVNetName'))]",
     "gatewaySubnetRef": "[concat(variables('vnetID'),'/subnets/','GatewaySubnet')]",
     "subnetRef": "[concat(variables('vnetID'),'/subnets/',parameters('AzureVNetSubnetName'))]",
     "api-version": "2015-06-15"
