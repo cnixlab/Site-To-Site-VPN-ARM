@@ -110,16 +110,15 @@
     "CompanyNameAcronym": {
       "type": "string",
       "metadata": {
-        "description": "Company Name will be used as prefix for every object that will be deployed using this template. For example if company name is called ProServeIt, prefix can be PSIT"
+        "description": "Company Name will be used as prefix for every object that will be deployed using this template. For example if company name is called ProServeIt, prefix can be PSIT."
       }
     },
 
     "SelectVpnType": {
       "type": "String",
       "metadata": {
-        "description": "Select VPN type. VPN Type has to be supported by Local Gateway"
+        "description": "Select VPN type. VPN Type has to be supported by Local Gateway Device. Please check Azure Site To Site VPN Supported Gateways List."
       },
-      "defaultValue": "RouteBased",
       "allowedValues": [
         "RouteBased",
         "PolicyBased"
@@ -128,44 +127,44 @@
     "AzureVNetAddressPrefix": {
       "type": "string",
       "metadata": {
-        "description": "CIDR block representing the address space of the Azure VNet"
+        "description": "CIDR block representing the address space of the Azure VNet. This is the main address space of Azure Virtual Network. It will be used to create new subnets."
       }
     },
     "AzureVNetSubnetName": {
       "type": "string",
       "metadata": {
-        "description": "Arbitrary name for the Azure Subnet"
+        "description": "Specify name of the firts subnet. Subnets in Azure Virtual Network are not only identified by IP Address but human friendly name as well."
       }
     },
     "AzureVNetSubnetPrefix": {
       "type": "string",
       "metadata": {
-        "description": "CIDR block for VM subnet, subset of azureVNetAddressPrefix address space"
+        "description": "CIDR block for Virtual Machines Subnet. It is a subset of Azure Virtual Network Address Prefix. It has to be contained within VNet Address Prefix\Space."
       }
     },
     "AzureVNetGatewaySubnetPrefix": {
       "type": "string",
       "metadata": {
-        "description": "CIDR block for gateway subnet, subset of azureVNetAddressPrefix address space"
+        "description": "CIDR block for gateway subnet. Gateway subnet will be used by Azure Virtual Network Gateway Only. Size of Gateway Subnet strictly depends on how many different physical locations will be connecting to single Azure Network Gateway."
       }
     },
     "LocalGatewayIpAddress": {
       "type": "string",
       "metadata": {
-        "description": "Public IP of your on premise VPN Device. It can be a firewall or router."
+        "description": "Public IP of your on premise VPN Device. It can be a Firewall or Router."
       }
     },
     "LocalNetworkAddressPrefix": {
       "type": "string",
       "metadata": {
-        "description": "CIDR block representing the address space of your local/on-prem network's Subnet"
+        "description": "CIDR block representing the address space of your on-premise network's Subnet."
       }
     },
 
     "SharedKey": {
       "type": "string",
       "metadata": {
-        "description": "Shared key (PSK) for IPSec tunnel"
+        "description": "Shared key (PSK) for IPSec tunnel. Password key that will be used by both, Azure Virtual Gateway and Local Network Gateway\Firwall to establish VPN Connection."
       }
     }
   },
